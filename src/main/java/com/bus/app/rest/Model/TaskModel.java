@@ -3,7 +3,6 @@ package com.bus.app.rest.Model;
 
 import jakarta.persistence.Entity;
 import org.springframework.data.annotation.Id;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  *  TEST API app
@@ -15,13 +14,39 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 1.0.0
  */
 
-@Entity
-@RestController
+@Entity   //TaskModel es la entidad ENTITY
 public class TaskModel {
 
+        //Entidad y Componentes de entidad
         @Id
         private Long id;
         private String titulo;
         private String descripcion;
 
+        public TaskModel() {
+        }
+
+        public Long getId() {
+                return id;
+        }
+
+        public void setId(Long id) {
+                this.id = id;
+        }
+
+        public String getTitulo() {
+                return titulo;
+        }
+
+        public void setTitulo(String titulo) {
+                this.titulo = titulo;
+        }
+
+        public String getDescripcion() {
+                return descripcion;
+        }
+
+        public void setDescripcion(String descripcion) {
+                this.descripcion = descripcion;
+        }
 }
