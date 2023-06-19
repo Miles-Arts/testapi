@@ -1,7 +1,11 @@
 package com.bus.app.rest.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.bus.app.rest.Model.TaskModel;
+import com.bus.app.rest.Repository.IAllRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -18,9 +22,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AllController {
 
+    @Autowired   //Inyección de dependencias  /Instaciar el IAllREspository dentro de la clase
+    private IAllRepository iAllRepository;
 
-    @GetMapping(value = "/")
+//    public AllController(IAllRepository iAllRepository) {
+//        this.iAllRepository = iAllRepository;
+//    }
+
+    @GetMapping(value = "/")  //Entrata principal de la web
     public String testApi() {
         return  "HOLA TEST!!!";
     }
+
+    @GetMapping(value = "/tasks")
+    public List<TaskModel> getTasks() {
+        return iAllRepository.findAll();
+    }
+
+    @PostMapping(value = "savetasks")
+    public String saveTasks(@RequestBody TaskModel taskModel) {
+        iAllRepository.save(taskModel);
+        return "Save Task!!!";
+    }
+
 }

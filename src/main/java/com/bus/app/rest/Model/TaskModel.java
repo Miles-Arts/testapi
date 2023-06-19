@@ -1,8 +1,7 @@
 package com.bus.app.rest.Model;
 
 
-import jakarta.persistence.Entity;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
 /**
  *  TEST API app
@@ -14,13 +13,19 @@ import org.springframework.data.annotation.Id;
  * @since 1.0.0
  */
 
-@Entity   //TaskModel es la entidad ENTITY
+@Entity                 //TaskModel es la entidad ENTITY   task_model
+@Table(schema = "test")
 public class TaskModel {
 
         //Entidad y Componentes de entidad
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
+
+        @Column
         private String titulo;
+
+        @Column
         private String descripcion;
 
         public TaskModel() {
